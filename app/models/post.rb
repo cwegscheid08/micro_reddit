@@ -1,10 +1,7 @@
 class Post < ApplicationRecord
-	attr_accessor :name, :body
 
-	def initialize(attributes = {})
-		super
-		self[:name] = attributes[:name]
-		self[:body] = attributes[:body]
-		# self[:user_id] = attributes[:foreign_key]
-	end
+	validates :name, presence: true, length: { maximum: 20 }
+	validates :body, presence: true, length: { minimum: 5, maximum: 1000 }
+
+	belongs_to :user
 end
